@@ -1,0 +1,2 @@
+export NOTION_URL="https://www.notion.so/knowledgetree/bf8dca1166554dab9b481bff1cf3633c?v=a5d2e8ceef7d497ead483eefe363a5b4"
+export GA_TAG="G-5F9Y9HC95G"

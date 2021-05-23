@@ -1,0 +1,43 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:     
+  build-site:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Copy Repository Contents
+      uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    - name: Build Site
+      run: |
+        . config.txt
+        cat <<EOF > config.json
+        {
+          "url": "$NOTION_URL",
+          "theme": "pure",
+          "previewBrowser": "/usr/bin/chromium"
+        }
+        EOF
+        npm i -g notablog
+        notablog generate .
+    - name: Apply Patch
+      run: |
+        . config.txt
+        python sitepatch.py --gtag $GA_TAG
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public
+        publish_branch: gh-pages
