@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-5F9Y9HC95G"></script>
+      <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", "G-5F9Y9HC95G");
+      </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Chrome, Firefox OS and Opera Status Bar Color -->
+  <meta name="theme-color" content="#FFFFFF">
+  <meta property="og:title" content="Detectron 2">
+    <meta name="description" content="Object detection, image segmentation and pose estimation with production-ready library Detectron 2 - a gift from Facebook AI Research Lab to the AI community">
+  <meta property="og:description" content="Object detection, image segmentation and pose estimation with production-ready library Detectron 2 - a gift from Facebook AI Research Lab to the AI community">
+    <meta property="og:type" content="blog">
+  <title>Detectron 2</title>
+<link rel="icon" type="image/png" href="./favicon.png"/>
+  <!-- Favicon -->
+    <link rel="shortcut icon" target="_blank" href="⚡">
+    <link rel="stylesheet" type="text/css" target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+  <link rel="stylesheet" type="text/css"
+    target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/themes/prism.min.css">
+  <link rel="stylesheet" type="text/css" target="_blank" href="css/SourceSansPro.css">
+  <link rel="stylesheet" type="text/css" target="_blank" href="css/notablog.css">
+  <link rel="stylesheet" type="text/css" target="_blank" href="css/theme.css">
+  <style>
+    :root {
+      font-size: 18px;
+    }
+
+    .DateTagBar {
+      margin-top: 1.0rem;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="Navbar">
+    <a href="index">
+      <div class="Navbar__Btn"><span>⚡</span> <span>Home</span></div>
+    </a>
+                                                                                                                                                                                                            <span class="Navbar__Delim">&centerdot;</span>
+    <a href="apps">
+      <div class="Navbar__Btn"><span><img class="inline-img-icon" src="https://super.so/icon/dark/droplet.svg"></span> <span>Apps</span></div>
+    </a>
+                <span class="Navbar__Delim">&centerdot;</span>
+    <a href="jupyter-notebooks">
+      <div class="Navbar__Btn"><span><img class="inline-img-icon" src="https://super.so/icon/dark/book.svg"></span> <span>Notebooks</span></div>
+    </a>
+                <span class="Navbar__Delim">&centerdot;</span>
+    <a href="about">
+      <div class="Navbar__Btn"><span><img class="inline-img-icon" src="https://super.so/icon/dark/send.svg"></span> <span>About</span></div>
+    </a>
+                                  </nav>
+  <header class="Header">
+          <div class="Header__Spacer Header__Spacer--NoCover">
+    </div>
+        <div class="Header__Icon"><span><img class="inline-img-icon" src="https://super.so/icon/dark/crosshair.svg"></span></div>
+        <h1 class="Header__Title">Detectron 2</h1>
+            <div class="DateTagBar">
+                <span class="DateTagBar__Item DateTagBar__Date">Posted on Mon, Jan 4, 2021</span>
+                          <span class="DateTagBar__Item DateTagBar__Tag DateTagBar__Tag--blue">
+            <a target="_blank" href="tag/Vision">Vision</a>
+          </span>
+                <span class="DateTagBar__Item DateTagBar__Tag DateTagBar__Tag--brown">
+            <a target="_blank" href="tag/Production">Production</a>
+          </span>
+                  </div>
+          </header>
+      <article id="https://www.notion.so/6ba641f0e39f4b62bf6af9a895abd821" class="PageRoot"><div id="https://www.notion.so/01239fed1faf4aacaea5d1794e0aa479" class="Image Image--PageWidth"><figure><a target="_blank" href="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F3d5bb330-275c-4a02-854b-6a38d15090b8%2FUntitled.png?width=1347&amp;table=block&amp;id=01239fed-1faf-4aac-aea5-d1794e0aa479"><img src="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F3d5bb330-275c-4a02-854b-6a38d15090b8%2FUntitled.png?width=1347&amp;table=block&amp;id=01239fed-1faf-4aac-aea5-d1794e0aa479" style="width:100%"/></a><figcaption><span class="SemanticStringArray"></span></figcaption></figure></div><h1 id="https://www.notion.so/ce227ee205064144a5de41194eca73b6" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--1"><a class="Anchor" target="_blank" href="#https://www.notion.so/ce227ee205064144a5de41194eca73b6"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">Introduction</span></span></h1><div id="https://www.notion.so/db142a2ecfa0452097d16931896bd60d" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">Detectron 2 is a next-generation open-source object detection system from Facebook AI Research. With the repo you can use and train the various state-of-the-art models for detection tasks such as bounding-box detection, instance and semantic segmentation, and person keypoint detection.</span></span></p></div><div id="https://www.notion.so/f6038447ef274c30ae0bac1d9defe422" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">The following is the directory tree of detectron 2:</span></span></p></div><pre id="https://www.notion.so/dddc99f1382f46188be89eab3ec59d3f" class="Code Code--NoWrap"><code><span class="SemanticStringArray"><span class="SemanticString"><span>detectron2
+├─checkpoint  &lt;- checkpointer and model catalog handlers
+├─config      &lt;- default configs and handlers
+├─data        &lt;- dataset handlers and data loaders
+├─engine      &lt;- predictor and trainer engines
+├─evaluation  &lt;- evaluator for each dataset
+├─export      &lt;- converter of detectron2 models to caffe2 (ONNX)
+├─layers      &lt;- custom layers e.g. deformable conv.
+├─model_zoo   &lt;- pre-trained model links and handler
+├─modeling   
+│  ├─meta_arch &lt;- meta architecture e.g. R-CNN, RetinaNet
+│  ├─backbone  &lt;- backbone network e.g. ResNet, FPN
+│  ├─proposal_generator &lt;- region proposal network
+│  └─roi_heads &lt;- head networks for pooled ROIs e.g. box, mask heads
+├─solver       &lt;- optimizer and scheduler builders
+├─structures   &lt;- structure classes e.g. Boxes, Instances, etc
+└─utils        &lt;- utility modules e.g. visualizer, logger, etc</span></span></span></code></pre><h1 id="https://www.notion.so/87a2f907f55448729c2150dbb614fb97" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--1"><a class="Anchor" target="_blank" href="#https://www.notion.so/87a2f907f55448729c2150dbb614fb97"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">Installation</span></span></h1><pre id="https://www.notion.so/ac7e99eb3a5d438bba4c93e6329b6ebe" class="Code Code--NoWrap"><code><span class="SemanticStringArray"><span class="SemanticString"><span><span class="token operator">%</span><span class="token operator">%</span>time
+!pip install <span class="token operator">-</span>U torch<span class="token operator">==</span><span class="token number">1.4</span><span class="token operator">+</span>cu100 torchvision<span class="token operator">==</span><span class="token number">0.5</span><span class="token operator">+</span>cu100 <span class="token operator">-</span>f https<span class="token punctuation">:</span><span class="token operator">//</span>download<span class="token punctuation">.</span>pytorch<span class="token punctuation">.</span>org<span class="token operator">/</span>whl<span class="token operator">/</span>torch_stable<span class="token punctuation">.</span>html<span class="token punctuation">;</span>
+!pip install cython pyyaml<span class="token operator">==</span><span class="token number">5.1</span><span class="token punctuation">;</span>
+!pip install <span class="token operator">-</span>U <span class="token string">'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'</span><span class="token punctuation">;</span>
+!pip install detectron2 <span class="token operator">-</span>f https<span class="token punctuation">:</span><span class="token operator">//</span>dl<span class="token punctuation">.</span>fbaipublicfiles<span class="token punctuation">.</span>com<span class="token operator">/</span>detectron2<span class="token operator">/</span>wheels<span class="token operator">/</span>cu100<span class="token operator">/</span>index<span class="token punctuation">.</span>html<span class="token punctuation">;</span>
+
+<span class="token keyword">from</span> detectron2 <span class="token keyword">import</span> model_zoo
+<span class="token keyword">from</span> detectron2<span class="token punctuation">.</span>engine <span class="token keyword">import</span> DefaultPredictor
+<span class="token keyword">from</span> detectron2<span class="token punctuation">.</span>config <span class="token keyword">import</span> get_cfg
+<span class="token keyword">from</span> detectron2<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>visualizer <span class="token keyword">import</span> Visualizer
+<span class="token keyword">from</span> detectron2<span class="token punctuation">.</span>data <span class="token keyword">import</span> MetadataCatalog</span></span></span></code></pre><h1 id="https://www.notion.so/c82355cf13544285b3bdc675b8dca4d5" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--1"><a class="Anchor" target="_blank" href="#https://www.notion.so/c82355cf13544285b3bdc675b8dca4d5"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">Inference on pre-trained models</span></span></h1><div id="https://www.notion.so/5b93885a26ad4ae4aa3f285116ec9c20" class="Image Image--PageWidth"><figure><a target="_blank" href="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Ffeaf135e-a211-420b-8cdb-24dc6cc932e5%2FUntitled.png?width=672&amp;table=block&amp;id=5b93885a-26ad-4ae4-aa3f-285116ec9c20"><img src="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Ffeaf135e-a211-420b-8cdb-24dc6cc932e5%2FUntitled.png?width=672&amp;table=block&amp;id=5b93885a-26ad-4ae4-aa3f-285116ec9c20" style="width:100%"/></a><figcaption><span class="SemanticStringArray"><span class="SemanticString">Original image</span></span></figcaption></figure></div><div id="https://www.notion.so/6352b12bc43d42f99a5d926de84b9b16" class="Image Image--PageWidth"><figure><a target="_blank" href="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F23f21d25-a97b-44b3-b45e-17f69b5385b5%2FUntitled.png?width=744&amp;table=block&amp;id=6352b12b-c43d-42f9-9a5d-926de84b9b16"><img src="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F23f21d25-a97b-44b3-b45e-17f69b5385b5%2FUntitled.png?width=744&amp;table=block&amp;id=6352b12b-c43d-42f9-9a5d-926de84b9b16" style="width:100%"/></a><figcaption><span class="SemanticStringArray"><span class="SemanticString">Object detection with Faster-RCNN-101</span></span></figcaption></figure></div><div id="https://www.notion.so/10b61e98794243a6a0f302e41774de63" class="Image Image--PageWidth"><figure><a target="_blank" href="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F345be1d0-0c2f-4084-be4b-02c22422b930%2FUntitled.png?width=744&amp;table=block&amp;id=10b61e98-7942-43a6-a0f3-02e41774de63"><img src="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F345be1d0-0c2f-4084-be4b-02c22422b930%2FUntitled.png?width=744&amp;table=block&amp;id=10b61e98-7942-43a6-a0f3-02e41774de63" style="width:100%"/></a><figcaption><span class="SemanticStringArray"><span class="SemanticString">Instance segmentation with Mask-RCNN-50</span></span></figcaption></figure></div><div id="https://www.notion.so/6de2f61d767a42bfb9bbd1417544ac76" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"></span></p></div><div id="https://www.notion.so/86b6b01a3b964c5bbb1dc7764d89e799" class="Image Image--PageWidth"><figure><a target="_blank" href="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F19c46bd9-c2fb-4999-a1a7-b2d54db62dbb%2FUntitled.png?width=744&amp;table=block&amp;id=86b6b01a-3b96-4c5b-bb1d-c7764d89e799"><img src="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F19c46bd9-c2fb-4999-a1a7-b2d54db62dbb%2FUntitled.png?width=744&amp;table=block&amp;id=86b6b01a-3b96-4c5b-bb1d-c7764d89e799" style="width:100%"/></a><figcaption><span class="SemanticStringArray"><span class="SemanticString">Keypoint estimation with Keypoint-RCNN-50</span></span></figcaption></figure></div><div id="https://www.notion.so/df3d196c65064eb09d7a4ffac1cd237d" class="Image Image--PageWidth"><figure><a target="_blank" href="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F81cb959e-db7b-4d89-95b9-eefb278888b0%2FUntitled.png?width=744&amp;table=block&amp;id=df3d196c-6506-4eb0-9d7a-4ffac1cd237d"><img src="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F81cb959e-db7b-4d89-95b9-eefb278888b0%2FUntitled.png?width=744&amp;table=block&amp;id=df3d196c-6506-4eb0-9d7a-4ffac1cd237d" style="width:100%"/></a><figcaption><span class="SemanticStringArray"><span class="SemanticString">Panoptic segmentation with Panoptic-FPN-101</span></span></figcaption></figure></div><div id="https://www.notion.so/31c2e3aa76f34661a0797fc135924160" class="Image Image--PageWidth"><figure><a target="_blank" href="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fc1ef51fb-f3d6-4871-9908-f6eb21167879%2FUntitled.png?width=744&amp;table=block&amp;id=31c2e3aa-76f3-4661-a079-7fc135924160"><img src="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fc1ef51fb-f3d6-4871-9908-f6eb21167879%2FUntitled.png?width=744&amp;table=block&amp;id=31c2e3aa-76f3-4661-a079-7fc135924160" style="width:100%"/></a><figcaption><span class="SemanticStringArray"><span class="SemanticString">Default Mask R-CNN (top) vs. Mask R-CNN with PointRend (bottom) comparison</span></span></figcaption></figure></div><div id="https://www.notion.so/d6aa2566595648768afa1bafcbd775e1" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"></span></p></div><h1 id="https://www.notion.so/e3f2c384a3564876b475f6be9dee33ae" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--1"><a class="Anchor" target="_blank" href="#https://www.notion.so/e3f2c384a3564876b475f6be9dee33ae"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">Fine-tuning Balloons Dataset</span></span></h1><h3 id="https://www.notion.so/b3d4611867bb43e798fdeaf6532a1142" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" target="_blank" href="#https://www.notion.so/b3d4611867bb43e798fdeaf6532a1142"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">Load the data</span></span></h3><pre id="https://www.notion.so/0b3ae2c16323422fa13e19da4fab68ba" class="Code Code--NoWrap"><code><span class="SemanticStringArray"><span class="SemanticString"><span># download, decompress the data
+!wget https://github.com/matterport/Mask_RCNN/releases/download/v2.1/balloon_dataset.zip
+!unzip balloon_dataset.zip &gt; /dev/null</span></span></span></code></pre><h3 id="https://www.notion.so/a6929fd2632e4fca84d3081bfc5bdf26" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" target="_blank" href="#https://www.notion.so/a6929fd2632e4fca84d3081bfc5bdf26"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">Convert dataset into Detectron2&#x27;s standard format</span></span></h3><pre id="https://www.notion.so/f548bb5fcb3b456188868190718542f6" class="Code Code--NoWrap"><code><span class="SemanticStringArray"><span class="SemanticString"><span>from detectron2.structures import BoxMode
+# write a function that loads the dataset into detectron2&#x27;s standard format
+def get_balloon_dicts(img_dir):
+    json_file = os.path.join(img_dir, &quot;via_region_data.json&quot;)
+    with open(json_file) as f:
+        imgs_anns = json.load(f)
+
+    dataset_dicts = []
+    for _, v in imgs_anns.items():
+        record = {}
+        
+        filename = os.path.join(img_dir, v[&quot;filename&quot;])
+        height, width = cv2.imread(filename).shape[:2]
+        
+        record[&quot;file_name&quot;] = filename
+        record[&quot;height&quot;] = height
+        record[&quot;width&quot;] = width
+      
+        annos = v[&quot;regions&quot;]
+        objs = []
+        for _, anno in annos.items():
+            assert not anno[&quot;region_attributes&quot;]
+            anno = anno[&quot;shape_attributes&quot;]
+            px = anno[&quot;all_points_x&quot;]
+            py = anno[&quot;all_points_y&quot;]
+            poly = [(x + 0.5, y + 0.5) for x, y in zip(px, py)]
+            poly = list(itertools.chain.from_iterable(poly))
+
+            obj = {
+                &quot;bbox&quot;: [np.min(px), np.min(py), np.max(px), np.max(py)],
+                &quot;bbox_mode&quot;: BoxMode.XYXY_ABS,
+                &quot;segmentation&quot;: [poly],
+                &quot;category_id&quot;: 0,
+                &quot;iscrowd&quot;: 0
+            }
+            objs.append(obj)
+        record[&quot;annotations&quot;] = objs
+        dataset_dicts.append(record)
+    return dataset_dicts
+
+from detectron2.data import DatasetCatalog, MetadataCatalog
+for d in [&quot;train&quot;, &quot;val&quot;]:
+    DatasetCatalog.register(&quot;balloon/&quot; + d, lambda d=d: get_balloon_dicts(&quot;balloon/&quot; + d))
+    MetadataCatalog.get(&quot;balloon/&quot; + d).set(thing_classes=[&quot;balloon&quot;])
+balloon_metadata = MetadataCatalog.get(&quot;balloon/train&quot;)</span></span></span></code></pre><h3 id="https://www.notion.so/22c85a3b07d644f8aa3806e24a68c2bc" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" target="_blank" href="#https://www.notion.so/22c85a3b07d644f8aa3806e24a68c2bc"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">Model configuration and training</span></span></h3><pre id="https://www.notion.so/7e9bd959f1564aa1b2c678a2552b8418" class="Code Code--NoWrap"><code><span class="SemanticStringArray"><span class="SemanticString"><span>from detectron2.engine import DefaultTrainer
+from detectron2.config import get_cfg
+
+cfg = get_cfg()
+cfg.merge_from_file(model_zoo.get_config_file(&quot;COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml&quot;))
+cfg.DATASETS.TRAIN = (&quot;balloon/train&quot;,)
+cfg.DATASETS.TEST = ()   # no metrics implemented for this dataset
+cfg.DATALOADER.NUM_WORKERS = 2
+cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url(&quot;COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml&quot;)
+cfg.SOLVER.IMS_PER_BATCH = 2
+cfg.SOLVER.BASE_LR = 0.00025
+cfg.SOLVER.MAX_ITER = 300    # 300 iterations seems good enough, but you can certainly train longer
+cfg.MODEL.ROI_HEADS.BATCH_SIZE_PER_IMAGE = 128   # faster, and good enough for this toy dataset
+cfg.MODEL.ROI_HEADS.NUM_CLASSES = 1  # only has one class (ballon)
+
+os.makedirs(cfg.OUTPUT_DIR, exist_ok=True)
+trainer = DefaultTrainer(cfg) 
+trainer.resume_or_load(resume=False)
+trainer.train()</span></span></span></code></pre><h3 id="https://www.notion.so/e3ce1e230187452a881f18a338e04a3b" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" target="_blank" href="#https://www.notion.so/e3ce1e230187452a881f18a338e04a3b"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">Inference and Visualization</span></span></h3><pre id="https://www.notion.so/61fde659e511421bb1ae48636827d291" class="Code Code--NoWrap"><code><span class="SemanticStringArray"><span class="SemanticString"><span>from detectron2.utils.visualizer import ColorMode
+
+# load weights
+cfg.MODEL.WEIGHTS = os.path.join(cfg.OUTPUT_DIR, &quot;model_final.pth&quot;)
+cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.7   # set the testing threshold for this model
+# Set training data-set path
+cfg.DATASETS.TEST = (&quot;balloon/val&quot;, )
+# Create predictor (model for inference)
+predictor = DefaultPredictor(cfg)
+
+dataset_dicts = get_balloon_dicts(&quot;balloon/val&quot;)
+for d in random.sample(dataset_dicts, 3):    
+    im = cv2.imread(d[&quot;file_name&quot;])
+    outputs = predictor(im)
+    v = Visualizer(im[:, :, ::-1],
+                   metadata=balloon_metadata, 
+                   scale=0.8, 
+                   instance_mode=ColorMode.IMAGE_BW   # remove the colors of unsegmented pixels
+    )
+    v = v.draw_instance_predictions(outputs[&quot;instances&quot;].to(&quot;cpu&quot;))
+    cv2_imshow(v.get_image()[:, :, ::-1])</span></span></span></code></pre><div id="https://www.notion.so/4b2f85d6c659452dad55fa279fc952a3" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"></span></p></div><div id="https://www.notion.so/5fccf421804240f9a2d3decb3b4c9088" class="Image Image--PageWidth"><figure><a target="_blank" href="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Ffdaa99ba-a091-40cc-836a-a444edcaa9a3%2FUntitled.png?width=819&amp;table=block&amp;id=5fccf421-8042-40f9-a2d3-decb3b4c9088"><img src="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Ffdaa99ba-a091-40cc-836a-a444edcaa9a3%2FUntitled.png?width=819&amp;table=block&amp;id=5fccf421-8042-40f9-a2d3-decb3b4c9088" style="width:100%"/></a><figcaption><span class="SemanticStringArray"></span></figcaption></figure></div><div id="https://www.notion.so/30e3f4bd0dc54c1f9396ad628559da3f" class="Image Image--PageWidth"><figure><a target="_blank" href="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F3a614632-1a7e-4cd9-8892-a357567ad7de%2FUntitled.png?width=819&amp;table=block&amp;id=30e3f4bd-0dc5-4c1f-9396-ad628559da3f"><img src="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F3a614632-1a7e-4cd9-8892-a357567ad7de%2FUntitled.png?width=819&amp;table=block&amp;id=30e3f4bd-0dc5-4c1f-9396-ad628559da3f" style="width:100%"/></a><figcaption><span class="SemanticStringArray"></span></figcaption></figure></div><div id="https://www.notion.so/b3bcc8c1d6454640a8756f47c156f5dc" class="Image Image--PageWidth"><figure><a target="_blank" href="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fe64379ae-9003-4370-b2da-4db74fc0b681%2FUntitled.png?width=288&amp;table=block&amp;id=b3bcc8c1-d645-4640-a875-6f47c156f5dc"><img src="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fe64379ae-9003-4370-b2da-4db74fc0b681%2FUntitled.png?width=288&amp;table=block&amp;id=b3bcc8c1-d645-4640-a875-6f47c156f5dc" style="width:100%"/></a><figcaption><span class="SemanticStringArray"></span></figcaption></figure></div><div id="https://www.notion.so/f7327d4d824448709024795b04504d90" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"></span></p></div><h3 id="https://www.notion.so/64c9954d83424561a97d8faf8739573c" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" target="_blank" href="#https://www.notion.so/64c9954d83424561a97d8faf8739573c"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">References</span></span></h3><ul class="BulletedListWrapper"><li id="https://www.notion.so/f0d8bde9cd9644b8b699277a885f39e2" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString"><a class="SemanticString__Fragment SemanticString__Fragment--Link" target="_blank" href="https://medium.com/deepvisionguru/how-to-embed-detectron2-in-your-computer-vision-project-817f29149461">How to embed Detectron2 in your computer vision project - blogpost</a></span></span></li><li id="https://www.notion.so/9f04f9de5ac24f829ee2df8af89ae962" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString"><a class="SemanticString__Fragment SemanticString__Fragment--Link" target="_blank" href="https://gilberttanner.com/blog/detectron2-train-a-instance-segmentation-model">Detectron2 Train a Instance Segmentation Model by Gilbert Tanner</a></span></span></li><li id="https://www.notion.so/c25c8bea41b94b5190951c5203664b05" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString"><a class="SemanticString__Fragment SemanticString__Fragment--Link" target="_blank" href="https://www.dlology.com/blog/how-to-train-detectron2-with-custom-coco-datasets/">How to train Detectron2 with Custom COCO Datasets - DLology</a></span></span></li><li id="https://www.notion.so/712ade7e432143cabf215e1c18733459" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString"><a class="SemanticString__Fragment SemanticString__Fragment--Link" target="_blank" href="https://towardsdatascience.com/character-recognition-and-segmentation-for-custom-data-using-detectron2-599de82b393c">Character Recognition and Segmentation For Custom Data Using Detectron2 - blogpost</a></span></span></li><li id="https://www.notion.so/b0097e8abdf84827b58cba781d4be8a5" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString"><a class="SemanticString__Fragment SemanticString__Fragment--Link" target="_blank" href="https://www.celantur.com/blog/panoptic-segmentation-in-detectron2/">Training models with Panoptic Segmentation in Detectron2</a></span></span></li><li id="https://www.notion.so/51f086831eb74973bbb799966c0c63fd" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString"><a class="SemanticString__Fragment SemanticString__Fragment--Link" target="_blank" href="https://www.kaggle.com/lewisgmorris/image-segmentation-using-detectron2">Image segmentation using Detectron2 - Kaggle</a></span></span></li><li id="https://www.notion.so/2fdaa6203ba2436cafdf98d41a8eec11" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString"><a class="SemanticString__Fragment SemanticString__Fragment--Link" target="_blank" href="https://towardsdatascience.com/a-beginners-guide-to-object-detection-and-computer-vision-with-facebook-s-detectron2-700b6273390e">A Beginner’s Guide To Object Detection And Computer Vision With Facebook’s Detectron2</a></span></span></li><li id="https://www.notion.so/72fecc28b0134f73b8ec8f26f65f5669" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString"><a class="SemanticString__Fragment SemanticString__Fragment--Link" target="_blank" href="https://www.curiousily.com/posts/face-detection-on-custom-dataset-with-detectron2-in-python/">Face Detection on Custom Dataset with Detectron2 and PyTorch using Python</a></span></span></li><li id="https://www.notion.so/9958e6e31b4343f5ae64e0d08011c86e" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString"><a class="SemanticString__Fragment SemanticString__Fragment--Link" target="_blank" href="https://www.notion.so/knowledgetree/Detectron-2-d31ac9c14a8d4d9888882df14a4e0eee">My Experiment Notion</a></span></span></li><li id="https://www.notion.so/06a8c177f4a844b7a96111668e2cc3ea" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString"><a class="SemanticString__Fragment SemanticString__Fragment--Link" target="_blank" href="https://colab.research.google.com/drive/16jcaJoc6bCFAQ96jDe2HwtXj7BMD_-m5">Official Colab</a></span></span></li><li id="https://www.notion.so/41472635f8794fb99c994b067efab0fb" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString"><a class="SemanticString__Fragment SemanticString__Fragment--Link" target="_blank" href="https://research.fb.com/wp-content/uploads/2019/12/4.-detectron2.pdf">Official Slide</a></span></span></li><li id="https://www.notion.so/c9eb542b119144378b7a8f0b8a495ba2" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString"><a class="SemanticString__Fragment SemanticString__Fragment--Link" target="_blank" href="https://github.com/facebookresearch/detectron2">Official Git</a></span></span></li></ul><div id="https://www.notion.so/fe5ac664b05f4d309cebc57271c17762" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"></span></p></div></article>  <footer class="Footer">
+        <div>&copy; NotionSite 2021</div>
+        <div>&centerdot;</div>
+        <div>Powered by <a target="_blank" href="https://github.com/dragonman225/notablog" target="_blank"
+            rel="noopener noreferrer">Notablog</a>.
+        </div>
+    </footer>
+</body>
+
+</html>

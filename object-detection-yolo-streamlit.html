@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-5F9Y9HC95G"></script>
+      <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", "G-5F9Y9HC95G");
+      </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Chrome, Firefox OS and Opera Status Bar Color -->
+  <meta name="theme-color" content="#FFFFFF">
+  <meta property="og:title" content="Object detection with YOLO3">
+    <meta property="og:type" content="blog">
+  <title>Object detection with YOLO3</title>
+<link rel="icon" type="image/png" href="./favicon.png"/>
+  <!-- Favicon -->
+    <link rel="shortcut icon" target="_blank" href="⚡">
+    <link rel="stylesheet" type="text/css" target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+  <link rel="stylesheet" type="text/css"
+    target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/themes/prism.min.css">
+  <link rel="stylesheet" type="text/css" target="_blank" href="css/SourceSansPro.css">
+  <link rel="stylesheet" type="text/css" target="_blank" href="css/notablog.css">
+  <link rel="stylesheet" type="text/css" target="_blank" href="css/theme.css">
+  <style>
+    :root {
+      font-size: 18px;
+    }
+
+    .DateTagBar {
+      margin-top: 1.0rem;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="Navbar">
+    <a href="index">
+      <div class="Navbar__Btn"><span>⚡</span> <span>Home</span></div>
+    </a>
+                                                                                                                                                                                                            <span class="Navbar__Delim">&centerdot;</span>
+    <a href="apps">
+      <div class="Navbar__Btn"><span><img class="inline-img-icon" src="https://super.so/icon/dark/droplet.svg"></span> <span>Apps</span></div>
+    </a>
+                <span class="Navbar__Delim">&centerdot;</span>
+    <a href="jupyter-notebooks">
+      <div class="Navbar__Btn"><span><img class="inline-img-icon" src="https://super.so/icon/dark/book.svg"></span> <span>Notebooks</span></div>
+    </a>
+                <span class="Navbar__Delim">&centerdot;</span>
+    <a href="about">
+      <div class="Navbar__Btn"><span><img class="inline-img-icon" src="https://super.so/icon/dark/send.svg"></span> <span>About</span></div>
+    </a>
+                                  </nav>
+  <header class="Header">
+          <div class="Header__Spacer Header__Spacer--NoCover">
+    </div>
+        <h1 class="Header__Title">Object detection with YOLO3</h1>
+            <div class="DateTagBar">
+                <span class="DateTagBar__Item DateTagBar__Date">Posted on Sun, Dec 27, 2020</span>
+                          <span class="DateTagBar__Item DateTagBar__Tag DateTagBar__Tag--blue">
+            <a target="_blank" href="tag/Vision">Vision</a>
+          </span>
+                <span class="DateTagBar__Item DateTagBar__Tag DateTagBar__Tag--brown">
+            <a target="_blank" href="tag/Object detection">Object detection</a>
+          </span>
+                <span class="DateTagBar__Item DateTagBar__Tag DateTagBar__Tag--purple">
+            <a target="_blank" href="tag/Streamlit">Streamlit</a>
+          </span>
+                  </div>
+          </header>
+      <article id="https://www.notion.so/b6e79020ac1d4039b9f98fa2220c5eaf" class="PageRoot"><h2 id="https://www.notion.so/8fe4e3fb52ce47e4a7c98117c09697e9" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" target="_blank" href="#https://www.notion.so/8fe4e3fb52ce47e4a7c98117c09697e9"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">Live app</span></span></h2><div id="https://www.notion.so/3b285a8bafec48bf96f6e358f28c9aa0" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">This app can detect COCO 80-classes using three different models - Caffe MobileNet SSD, Yolo3-tiny, and Yolo3. It can also detect faces using two different models - SSD Res10 and OpenCV face detector.  Yolo3-tiny can also detect fires.</span></span></p></div><div id="https://www.notion.so/9be7b3add58f446384b174b3a2bb535c" class="Image Image--PageWidth"><figure><a target="_blank" href="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F60698832-5cc0-4142-b02f-782a0beb9997%2FUntitled.png?width=1366&amp;table=block&amp;id=9be7b3ad-d58f-4463-84b1-74b3a2bb535c"><img src="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F60698832-5cc0-4142-b02f-782a0beb9997%2FUntitled.png?width=1366&amp;table=block&amp;id=9be7b3ad-d58f-4463-84b1-74b3a2bb535c" style="width:100%"/></a><figcaption><span class="SemanticStringArray"></span></figcaption></figure></div><div id="https://www.notion.so/6ab14f97597a405b9cf5d3812230b4af" class="Image Image--PageWidth"><figure><a target="_blank" href="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F635f8c47-5096-408b-a3ca-e6b8995b3385%2FUntitled.png?width=1366&amp;table=block&amp;id=6ab14f97-597a-405b-9cf5-d3812230b4af"><img src="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F635f8c47-5096-408b-a3ca-e6b8995b3385%2FUntitled.png?width=1366&amp;table=block&amp;id=6ab14f97-597a-405b-9cf5-d3812230b4af" style="width:100%"/></a><figcaption><span class="SemanticStringArray"></span></figcaption></figure></div><div id="https://www.notion.so/23c1fcfe84714d95839742f6ba46351d" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"></span></p></div><h2 id="https://www.notion.so/b12a6233eb214b2fba51d2b793b12632" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" target="_blank" href="#https://www.notion.so/b12a6233eb214b2fba51d2b793b12632"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">Code</span></span></h2><pre id="https://www.notion.so/b7889051fa2a4ea882e8d1d44aa3d31d" class="Code Code--NoWrap"><code><span class="SemanticStringArray"><span class="SemanticString"><span><span class="token keyword">import</span> streamlit <span class="token keyword">as</span> st
+<span class="token keyword">import</span> cv2
+<span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> os
+
+<span class="token keyword">from</span> tempfile <span class="token keyword">import</span> NamedTemporaryFile
+<span class="token keyword">from</span> tensorflow<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>preprocessing<span class="token punctuation">.</span>image <span class="token keyword">import</span> img_to_array<span class="token punctuation">,</span> load_img
+
+temp_file <span class="token operator">=</span> NamedTemporaryFile<span class="token punctuation">(</span>delete<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+
+DEFAULT_CONFIDENCE_THRESHOLD <span class="token operator">=</span> <span class="token number">0.5</span>
+DEMO_IMAGE <span class="token operator">=</span> <span class="token string">"test_images/demo.jpg"</span>
+MODEL <span class="token operator">=</span> <span class="token string">"model/MobileNetSSD_deploy.caffemodel"</span>
+PROTOTXT <span class="token operator">=</span> <span class="token string">"model/MobileNetSSD_deploy.prototxt.txt"</span>
+
+CLASSES <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token string">"background"</span><span class="token punctuation">,</span>
+    <span class="token string">"aeroplane"</span><span class="token punctuation">,</span>
+    <span class="token string">"bicycle"</span><span class="token punctuation">,</span>
+    <span class="token string">"bird"</span><span class="token punctuation">,</span>
+    <span class="token string">"boat"</span><span class="token punctuation">,</span>
+    <span class="token string">"bottle"</span><span class="token punctuation">,</span>
+    <span class="token string">"bus"</span><span class="token punctuation">,</span>
+    <span class="token string">"car"</span><span class="token punctuation">,</span>
+    <span class="token string">"cat"</span><span class="token punctuation">,</span>
+    <span class="token string">"chair"</span><span class="token punctuation">,</span>
+    <span class="token string">"cow"</span><span class="token punctuation">,</span>
+    <span class="token string">"diningtable"</span><span class="token punctuation">,</span>
+    <span class="token string">"dog"</span><span class="token punctuation">,</span>
+    <span class="token string">"horse"</span><span class="token punctuation">,</span>
+    <span class="token string">"motorbike"</span><span class="token punctuation">,</span>
+    <span class="token string">"person"</span><span class="token punctuation">,</span>
+    <span class="token string">"pottedplant"</span><span class="token punctuation">,</span>
+    <span class="token string">"sheep"</span><span class="token punctuation">,</span>
+    <span class="token string">"sofa"</span><span class="token punctuation">,</span>
+    <span class="token string">"train"</span><span class="token punctuation">,</span>
+    <span class="token string">"tvmonitor"</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span>
+COLORS <span class="token operator">=</span> np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>uniform<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>CLASSES<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token decorator annotation punctuation">@st<span class="token punctuation">.</span>cache</span>
+<span class="token keyword">def</span> <span class="token function">process_image</span><span class="token punctuation">(</span>image<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    blob <span class="token operator">=</span> cv2<span class="token punctuation">.</span>dnn<span class="token punctuation">.</span>blobFromImage<span class="token punctuation">(</span>
+        cv2<span class="token punctuation">.</span>resize<span class="token punctuation">(</span>image<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">300</span><span class="token punctuation">,</span> <span class="token number">300</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0.007843</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">300</span><span class="token punctuation">,</span> <span class="token number">300</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">127.5</span>
+    <span class="token punctuation">)</span>
+    net <span class="token operator">=</span> cv2<span class="token punctuation">.</span>dnn<span class="token punctuation">.</span>readNetFromCaffe<span class="token punctuation">(</span>PROTOTXT<span class="token punctuation">,</span> MODEL<span class="token punctuation">)</span>
+    net<span class="token punctuation">.</span>setInput<span class="token punctuation">(</span>blob<span class="token punctuation">)</span>
+    detections <span class="token operator">=</span> net<span class="token punctuation">.</span>forward<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> detections
+
+
+<span class="token decorator annotation punctuation">@st<span class="token punctuation">.</span>cache</span>
+<span class="token keyword">def</span> <span class="token function">annotate_image</span><span class="token punctuation">(</span>
+    image<span class="token punctuation">,</span> detections<span class="token punctuation">,</span> confidence_threshold<span class="token operator">=</span>DEFAULT_CONFIDENCE_THRESHOLD
+<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># loop over the detections</span>
+    <span class="token punctuation">(</span>h<span class="token punctuation">,</span> w<span class="token punctuation">)</span> <span class="token operator">=</span> image<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span>
+    labels <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> detections<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        confidence <span class="token operator">=</span> detections<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span>
+
+        <span class="token keyword">if</span> confidence <span class="token operator">></span> confidence_threshold<span class="token punctuation">:</span>
+            <span class="token comment"># extract the index of the class label from the `detections`,</span>
+            <span class="token comment"># then compute the (x, y)-coordinates of the bounding box for</span>
+            <span class="token comment"># the object</span>
+            idx <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>detections<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            box <span class="token operator">=</span> detections<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">:</span><span class="token number">7</span><span class="token punctuation">]</span> <span class="token operator">*</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span>w<span class="token punctuation">,</span> h<span class="token punctuation">,</span> w<span class="token punctuation">,</span> h<span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token punctuation">(</span>startX<span class="token punctuation">,</span> startY<span class="token punctuation">,</span> endX<span class="token punctuation">,</span> endY<span class="token punctuation">)</span> <span class="token operator">=</span> box<span class="token punctuation">.</span>astype<span class="token punctuation">(</span><span class="token string">"int"</span><span class="token punctuation">)</span>
+
+            <span class="token comment"># display the prediction</span>
+            label <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>CLASSES<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">}</span></span><span class="token string">: </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token builtin">round</span><span class="token punctuation">(</span>confidence <span class="token operator">*</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">%"</span></span>
+            labels<span class="token punctuation">.</span>append<span class="token punctuation">(</span>label<span class="token punctuation">)</span>
+            cv2<span class="token punctuation">.</span>rectangle<span class="token punctuation">(</span>image<span class="token punctuation">,</span> <span class="token punctuation">(</span>startX<span class="token punctuation">,</span> startY<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>endX<span class="token punctuation">,</span> endY<span class="token punctuation">)</span><span class="token punctuation">,</span> COLORS<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+            y <span class="token operator">=</span> startY <span class="token operator">-</span> <span class="token number">15</span> <span class="token keyword">if</span> startY <span class="token operator">-</span> <span class="token number">15</span> <span class="token operator">></span> <span class="token number">15</span> <span class="token keyword">else</span> startY <span class="token operator">+</span> <span class="token number">15</span>
+            cv2<span class="token punctuation">.</span>putText<span class="token punctuation">(</span>
+                image<span class="token punctuation">,</span> label<span class="token punctuation">,</span> <span class="token punctuation">(</span>startX<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>FONT_HERSHEY_SIMPLEX<span class="token punctuation">,</span> <span class="token number">0.5</span><span class="token punctuation">,</span> COLORS<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">2</span>
+            <span class="token punctuation">)</span>
+    <span class="token keyword">return</span> image<span class="token punctuation">,</span> labels
+
+
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+  selected_box <span class="token operator">=</span> st<span class="token punctuation">.</span>sidebar<span class="token punctuation">.</span>selectbox<span class="token punctuation">(</span>
+    <span class="token string">'Choose one of the following'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span><span class="token string">'Welcome'</span><span class="token punctuation">,</span> <span class="token string">'Object Detection'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+    
+  <span class="token keyword">if</span> selected_box <span class="token operator">==</span> <span class="token string">'Welcome'</span><span class="token punctuation">:</span>
+      welcome<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">if</span> selected_box <span class="token operator">==</span> <span class="token string">'Object Detection'</span><span class="token punctuation">:</span>
+      object_detection<span class="token punctuation">(</span><span class="token punctuation">)</span> 
+
+<span class="token keyword">def</span> <span class="token function">welcome</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+  st<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'Object Detection using Streamlit'</span><span class="token punctuation">)</span>
+  st<span class="token punctuation">.</span>subheader<span class="token punctuation">(</span><span class="token string">'A simple app for object detection'</span><span class="token punctuation">)</span>
+  st<span class="token punctuation">.</span>image<span class="token punctuation">(</span><span class="token string">'test_images/demo.jpg'</span><span class="token punctuation">,</span>use_column_width<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">object_detection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+  
+  st<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">"Object detection with MobileNet SSD"</span><span class="token punctuation">)</span>
+
+  confidence_threshold <span class="token operator">=</span> st<span class="token punctuation">.</span>sidebar<span class="token punctuation">.</span>slider<span class="token punctuation">(</span>
+    <span class="token string">"Confidence threshold"</span><span class="token punctuation">,</span> <span class="token number">0.0</span><span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">,</span> DEFAULT_CONFIDENCE_THRESHOLD<span class="token punctuation">,</span> <span class="token number">0.05</span><span class="token punctuation">)</span>
+
+  st<span class="token punctuation">.</span>sidebar<span class="token punctuation">.</span>multiselect<span class="token punctuation">(</span><span class="token string">"Select object classes to include"</span><span class="token punctuation">,</span>
+  options<span class="token operator">=</span>CLASSES<span class="token punctuation">,</span>
+  default<span class="token operator">=</span>CLASSES
+  <span class="token punctuation">)</span>
+
+  img_file_buffer <span class="token operator">=</span> st<span class="token punctuation">.</span>file_uploader<span class="token punctuation">(</span><span class="token string">"Upload an image"</span><span class="token punctuation">,</span> <span class="token builtin">type</span><span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"png"</span><span class="token punctuation">,</span> <span class="token string">"jpg"</span><span class="token punctuation">,</span> <span class="token string">"jpeg"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">if</span> img_file_buffer <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+      temp_file<span class="token punctuation">.</span>write<span class="token punctuation">(</span>img_file_buffer<span class="token punctuation">.</span>getvalue<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+      image <span class="token operator">=</span> load_img<span class="token punctuation">(</span>temp_file<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
+      image <span class="token operator">=</span> img_to_array<span class="token punctuation">(</span>image<span class="token punctuation">)</span>
+      image <span class="token operator">=</span> image<span class="token operator">/</span><span class="token number">255.0</span>
+
+  <span class="token keyword">else</span><span class="token punctuation">:</span>
+      demo_image <span class="token operator">=</span> DEMO_IMAGE
+      image <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>Image<span class="token punctuation">.</span><span class="token builtin">open</span><span class="token punctuation">(</span>demo_image<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+  detections <span class="token operator">=</span> process_image<span class="token punctuation">(</span>image<span class="token punctuation">)</span>
+  image<span class="token punctuation">,</span> labels <span class="token operator">=</span> annotate_image<span class="token punctuation">(</span>image<span class="token punctuation">,</span> detections<span class="token punctuation">,</span> confidence_threshold<span class="token punctuation">)</span>
+
+  st<span class="token punctuation">.</span>image<span class="token punctuation">(</span>
+      image<span class="token punctuation">,</span> caption<span class="token operator">=</span><span class="token string-interpolation"><span class="token string">f"Processed image"</span></span><span class="token punctuation">,</span> use_column_width<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span>
+
+  st<span class="token punctuation">.</span>write<span class="token punctuation">(</span>labels<span class="token punctuation">)</span>
+
+
+main<span class="token punctuation">(</span><span class="token punctuation">)</span></span></span></span></code></pre><div id="https://www.notion.so/5ea9bb6a021a4d7993800afd74acc384" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"></span></p></div><div id="https://www.notion.so/9990756ed0644c42b763f48e9feeda36" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><em class="SemanticString__Fragment SemanticString__Fragment--Italic">You can play with the live app</em></span><span class="SemanticString"> </span><span class="SemanticString"><em class="SemanticString__Fragment SemanticString__Fragment--Italic"><a class="SemanticString__Fragment SemanticString__Fragment--Link" target="_blank" href="https://share.streamlit.io/sparsh-ai/streamlit-489fbbb7/app.py">here</a></em></span><span class="SemanticString"><em class="SemanticString__Fragment SemanticString__Fragment--Italic">. Source code is available </em></span><span class="SemanticString"><em class="SemanticString__Fragment SemanticString__Fragment--Italic"><a class="SemanticString__Fragment SemanticString__Fragment--Link" target="_blank" href="https://github.com/sparsh-ai/streamlit-5a407279/tree/master">here</a></em></span><span class="SemanticString"><em class="SemanticString__Fragment SemanticString__Fragment--Italic"> on Github.</em></span></span></p></div></article>  <footer class="Footer">
+        <div>&copy; NotionSite 2021</div>
+        <div>&centerdot;</div>
+        <div>Powered by <a target="_blank" href="https://github.com/dragonman225/notablog" target="_blank"
+            rel="noopener noreferrer">Notablog</a>.
+        </div>
+    </footer>
+</body>
+
+</html>

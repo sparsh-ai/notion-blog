@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-5F9Y9HC95G"></script>
+      <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", "G-5F9Y9HC95G");
+      </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Chrome, Firefox OS and Opera Status Bar Color -->
+  <meta name="theme-color" content="#FFFFFF">
+  <meta property="og:title" content="Object detection with OpenCV">
+    <meta property="og:type" content="blog">
+  <title>Object detection with OpenCV</title>
+<link rel="icon" type="image/png" href="./favicon.png"/>
+  <!-- Favicon -->
+    <link rel="shortcut icon" target="_blank" href="⚡">
+    <link rel="stylesheet" type="text/css" target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+  <link rel="stylesheet" type="text/css"
+    target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/themes/prism.min.css">
+  <link rel="stylesheet" type="text/css" target="_blank" href="css/SourceSansPro.css">
+  <link rel="stylesheet" type="text/css" target="_blank" href="css/notablog.css">
+  <link rel="stylesheet" type="text/css" target="_blank" href="css/theme.css">
+  <style>
+    :root {
+      font-size: 18px;
+    }
+
+    .DateTagBar {
+      margin-top: 1.0rem;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="Navbar">
+    <a href="index">
+      <div class="Navbar__Btn"><span>⚡</span> <span>Home</span></div>
+    </a>
+                                                                                                                                                                                                            <span class="Navbar__Delim">&centerdot;</span>
+    <a href="apps">
+      <div class="Navbar__Btn"><span><img class="inline-img-icon" src="https://super.so/icon/dark/droplet.svg"></span> <span>Apps</span></div>
+    </a>
+                <span class="Navbar__Delim">&centerdot;</span>
+    <a href="jupyter-notebooks">
+      <div class="Navbar__Btn"><span><img class="inline-img-icon" src="https://super.so/icon/dark/book.svg"></span> <span>Notebooks</span></div>
+    </a>
+                <span class="Navbar__Delim">&centerdot;</span>
+    <a href="about">
+      <div class="Navbar__Btn"><span><img class="inline-img-icon" src="https://super.so/icon/dark/send.svg"></span> <span>About</span></div>
+    </a>
+                                  </nav>
+  <header class="Header">
+          <div class="Header__Spacer Header__Spacer--NoCover">
+    </div>
+        <h1 class="Header__Title">Object detection with OpenCV</h1>
+            <div class="DateTagBar">
+                <span class="DateTagBar__Item DateTagBar__Date">Posted on Sun, Dec 27, 2020</span>
+                          <span class="DateTagBar__Item DateTagBar__Tag DateTagBar__Tag--blue">
+            <a target="_blank" href="tag/Vision">Vision</a>
+          </span>
+                <span class="DateTagBar__Item DateTagBar__Tag DateTagBar__Tag--brown">
+            <a target="_blank" href="tag/Object detection">Object detection</a>
+          </span>
+                <span class="DateTagBar__Item DateTagBar__Tag DateTagBar__Tag--gray">
+            <a target="_blank" href="tag/OpenCV">OpenCV</a>
+          </span>
+                <span class="DateTagBar__Item DateTagBar__Tag DateTagBar__Tag--yellow">
+            <a target="_blank" href="tag/Face detection">Face detection</a>
+          </span>
+                  </div>
+          </header>
+      <article id="https://www.notion.so/2b546b68eb87414a990fdf017d12d616" class="PageRoot"><h2 id="https://www.notion.so/d104832ea5ce4b66aaec9ccfea18ad81" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" target="_blank" href="#https://www.notion.so/d104832ea5ce4b66aaec9ccfea18ad81"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString"><strong class="SemanticString__Fragment SemanticString__Fragment--Bold">Face detection</strong></span><span class="SemanticString"> </span></span></h2><div id="https://www.notion.so/23d2e2b6342240ea9534ac3b6275b8f4" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">We will use the frontal face Haar cascade classifier model to detect faces in the given image. The following function first passes the given image into the classifier model to detect a list of face bounding boxes and then runs a loop to draw a red rectangle box around each detected face in the image:</span></span></p></div><pre id="https://www.notion.so/bd69907d198b4f9389d6752aab948fb5" class="Code Code--NoWrap"><code><span class="SemanticStringArray"><span class="SemanticString"><span><span class="token keyword">def</span> <span class="token function">detect_faces</span><span class="token punctuation">(</span>fix_img<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    face_rects <span class="token operator">=</span> face_classifier<span class="token punctuation">.</span>detectMultiScale<span class="token punctuation">(</span>fix_img<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> w<span class="token punctuation">,</span> h<span class="token punctuation">)</span> <span class="token keyword">in</span> face_rects<span class="token punctuation">:</span>
+        cv2<span class="token punctuation">.</span>rectangle<span class="token punctuation">(</span>fix_img<span class="token punctuation">,</span>
+                     <span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     <span class="token punctuation">(</span>x<span class="token operator">+</span>w<span class="token punctuation">,</span> y<span class="token operator">+</span>h<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     <span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     <span class="token number">10</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> fix_img</span></span></span></code></pre><h2 id="https://www.notion.so/3120b488ff114bba9e5e751fcb18c61b" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" target="_blank" href="#https://www.notion.so/3120b488ff114bba9e5e751fcb18c61b"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString"><strong class="SemanticString__Fragment SemanticString__Fragment--Bold">Eyes detection</strong></span></span></h2><div id="https://www.notion.so/c4c8e81025f9412a80c0eb32fc0199b3" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">The process is almost similar to the face detection process. Instead of frontal face Haar cascade, we will use the eye detection Haar cascade model.</span></span></p></div><div id="https://www.notion.so/ba61ac3beb2f4f46bfd5399be0c87543" class="ColumnList"><div id="https://www.notion.so/82047d3ddd1d4f03928896865790c847" class="Column" style="width:calc((100% - var(--column-spacing) * 1) * 0.5)"><div id="https://www.notion.so/795dea8c6641482eae0d6da0a87064ce" class="Image Image--Normal"><figure><a target="_blank" href="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F8aeaab9a-0202-4518-8456-1cca23022b2c%2FUntitled.png?width=381&amp;table=block&amp;id=795dea8c-6641-482e-ae0d-6da0a87064ce"><img src="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F8aeaab9a-0202-4518-8456-1cca23022b2c%2FUntitled.png?width=381&amp;table=block&amp;id=795dea8c-6641-482e-ae0d-6da0a87064ce" style="width:381px"/></a><figcaption><span class="SemanticStringArray"><span class="SemanticString">Input image</span></span></figcaption></figure></div></div><div id="https://www.notion.so/73be82d1f04b445aa134607a0a4ee35c" class="Column" style="width:calc((100% - var(--column-spacing) * 1) * 0.5)"><div id="https://www.notion.so/a925299082a14573b6dc6147bbbd8c63" class="Image Image--Normal"><figure><a target="_blank" href="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F6e895bf5-47af-4b99-9ceb-f9b0e0eb353b%2FUntitled.png?width=381&amp;table=block&amp;id=a9252990-82a1-4573-b6dc-6147bbbd8c63"><img src="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F6e895bf5-47af-4b99-9ceb-f9b0e0eb353b%2FUntitled.png?width=381&amp;table=block&amp;id=a9252990-82a1-4573-b6dc-6147bbbd8c63" style="width:381px"/></a><figcaption><span class="SemanticStringArray"><span class="SemanticString">detected faces and eyes in the image</span></span></figcaption></figure></div></div></div><h2 id="https://www.notion.so/14fb8182afb44b228a6b9bdf22d93ea5" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" target="_blank" href="#https://www.notion.so/14fb8182afb44b228a6b9bdf22d93ea5"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString"><strong class="SemanticString__Fragment SemanticString__Fragment--Bold">Pedestrian detection</strong></span><span class="SemanticString"> </span></span></h2><div id="https://www.notion.so/9615b572196544df9248b28f6051750c" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">We will use the full-body Haar cascade classifier model for pedestrian detection. We will apply this model to a video this time. The following function will run the model on each frame of the video to detect the pedestrians:</span></span></p></div><pre id="https://www.notion.so/2a366aa1701840f2a45e2c86df9d0153" class="Code Code--NoWrap"><code><span class="SemanticStringArray"><span class="SemanticString"><span><span class="token comment"># While Loop</span>
+<span class="token keyword">while</span> cap<span class="token punctuation">.</span>isOpened<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># Read the capture</span>
+		ret<span class="token punctuation">,</span> frame <span class="token operator">=</span> cap<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment"># Pass the Frame to the Classifier</span>
+		bodies <span class="token operator">=</span> body_classifier<span class="token punctuation">.</span>detectMultiScale<span class="token punctuation">(</span>frame<span class="token punctuation">,</span> <span class="token number">1.2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+    <span class="token comment"># if Statement</span>
+		<span class="token keyword">if</span> ret <span class="token operator">==</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        <span class="token comment"># Bound Boxes to Identified Bodies</span>
+				<span class="token keyword">for</span> <span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>w<span class="token punctuation">,</span>h<span class="token punctuation">)</span> <span class="token keyword">in</span> bodies<span class="token punctuation">:</span>
+            cv2<span class="token punctuation">.</span>rectangle<span class="token punctuation">(</span>frame<span class="token punctuation">,</span>
+                         <span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                         <span class="token punctuation">(</span>x<span class="token operator">+</span>w<span class="token punctuation">,</span> y<span class="token operator">+</span>h<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                         <span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">,</span><span class="token number">125</span><span class="token punctuation">,</span><span class="token number">225</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                         <span class="token number">5</span><span class="token punctuation">)</span>
+            cv2<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span><span class="token string">'Pedestrians'</span><span class="token punctuation">,</span> frame<span class="token punctuation">)</span> 
+        <span class="token comment"># Exit with Esc button</span>
+				<span class="token keyword">if</span> cv2<span class="token punctuation">.</span>waitKey<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">27</span><span class="token punctuation">:</span>
+            <span class="token keyword">break</span>  
+    <span class="token comment"># else Statement</span>
+		<span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">break</span>
+    
+<span class="token comment"># Release the Capture &amp; Destroy All Windows</span>
+cap<span class="token punctuation">.</span>release<span class="token punctuation">(</span><span class="token punctuation">)</span>
+cv2<span class="token punctuation">.</span>destroyAllWindows<span class="token punctuation">(</span><span class="token punctuation">)</span></span></span></span></code></pre><h2 id="https://www.notion.so/fab8f3349a6d4197b3f26e0b599cd805" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" target="_blank" href="#https://www.notion.so/fab8f3349a6d4197b3f26e0b599cd805"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString"><strong class="SemanticString__Fragment SemanticString__Fragment--Bold">Car detection</strong></span></span></h2><div id="https://www.notion.so/12aee670cc6545148fe50b7f814f4ca6" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">The process is almost similar to the pedestrian detection process. Again, we will use this model on a video. Instead of people Haar cascade, we will use the car cascade model.</span></span></p></div><h2 id="https://www.notion.so/c31079087107477f991d88651d2f2772" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--2"><a class="Anchor" target="_blank" href="#https://www.notion.so/c31079087107477f991d88651d2f2772"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString"><strong class="SemanticString__Fragment SemanticString__Fragment--Bold">Car number plate detection</strong></span></span></h2><div id="https://www.notion.so/11d491e0755c4aa6bc7353c24be51f09" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">The process is almost similar to the face and eye detection process. We will use the car number plate cascade model.</span></span></p></div><div id="https://www.notion.so/5b51f13e32c843819d79fc4898c8f564" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"></span></p></div><div id="https://www.notion.so/715a730af5554c6b84fcfbd94b24c4a3" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString"><em class="SemanticString__Fragment SemanticString__Fragment--Italic">You can find the code </em></span><span class="SemanticString"><em class="SemanticString__Fragment SemanticString__Fragment--Italic"><a class="SemanticString__Fragment SemanticString__Fragment--Link" target="_blank" href="https://github.com/sparsh-ai/0D7ACA15">here</a></em></span><span class="SemanticString"><em class="SemanticString__Fragment SemanticString__Fragment--Italic"> on Github.</em></span></span></p></div></article>  <footer class="Footer">
+        <div>&copy; NotionSite 2021</div>
+        <div>&centerdot;</div>
+        <div>Powered by <a target="_blank" href="https://github.com/dragonman225/notablog" target="_blank"
+            rel="noopener noreferrer">Notablog</a>.
+        </div>
+    </footer>
+</body>
+
+</html>

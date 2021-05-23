@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-5F9Y9HC95G"></script>
+      <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", "G-5F9Y9HC95G");
+      </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Chrome, Firefox OS and Opera Status Bar Color -->
+  <meta name="theme-color" content="#FFFFFF">
+  <meta property="og:title" content="Face detection with Detectron 2">
+    <meta property="og:type" content="blog">
+  <title>Face detection with Detectron 2</title>
+<link rel="icon" type="image/png" href="./favicon.png"/>
+  <!-- Favicon -->
+    <link rel="shortcut icon" target="_blank" href="⚡">
+    <link rel="stylesheet" type="text/css" target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+  <link rel="stylesheet" type="text/css"
+    target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/themes/prism.min.css">
+  <link rel="stylesheet" type="text/css" target="_blank" href="css/SourceSansPro.css">
+  <link rel="stylesheet" type="text/css" target="_blank" href="css/notablog.css">
+  <link rel="stylesheet" type="text/css" target="_blank" href="css/theme.css">
+  <style>
+    :root {
+      font-size: 18px;
+    }
+
+    .DateTagBar {
+      margin-top: 1.0rem;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="Navbar">
+    <a href="index">
+      <div class="Navbar__Btn"><span>⚡</span> <span>Home</span></div>
+    </a>
+                                                                                                                                                                                                            <span class="Navbar__Delim">&centerdot;</span>
+    <a href="apps">
+      <div class="Navbar__Btn"><span><img class="inline-img-icon" src="https://super.so/icon/dark/droplet.svg"></span> <span>Apps</span></div>
+    </a>
+                <span class="Navbar__Delim">&centerdot;</span>
+    <a href="jupyter-notebooks">
+      <div class="Navbar__Btn"><span><img class="inline-img-icon" src="https://super.so/icon/dark/book.svg"></span> <span>Notebooks</span></div>
+    </a>
+                <span class="Navbar__Delim">&centerdot;</span>
+    <a href="about">
+      <div class="Navbar__Btn"><span><img class="inline-img-icon" src="https://super.so/icon/dark/send.svg"></span> <span>About</span></div>
+    </a>
+                                  </nav>
+  <header class="Header">
+          <div class="Header__Spacer Header__Spacer--NoCover">
+    </div>
+        <h1 class="Header__Title">Face detection with Detectron 2</h1>
+            <div class="DateTagBar">
+                <span class="DateTagBar__Item DateTagBar__Date">Posted on Mon, Jan 4, 2021</span>
+                          <span class="DateTagBar__Item DateTagBar__Tag DateTagBar__Tag--blue">
+            <a target="_blank" href="tag/Vision">Vision</a>
+          </span>
+                <span class="DateTagBar__Item DateTagBar__Tag DateTagBar__Tag--brown">
+            <a target="_blank" href="tag/Object detection">Object detection</a>
+          </span>
+                <span class="DateTagBar__Item DateTagBar__Tag DateTagBar__Tag--yellow">
+            <a target="_blank" href="tag/Detectron 2">Detectron 2</a>
+          </span>
+                  </div>
+          </header>
+      <article id="https://www.notion.so/7f676c69e2014ddc953c143e60ce38aa" class="PageRoot"><div id="https://www.notion.so/280056c740d042199f463ddbe63e49cc" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">The process is same. Here is the output.</span></span></p></div><div id="https://www.notion.so/395139db3f8344c6b50c40aac0537e1f" class="Image Image--PageWidth"><figure><a target="_blank" href="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fb2a4da68-0a9e-463f-bc21-badcb66a45c7%2FUntitled.png?width=1353&amp;table=block&amp;id=395139db-3f83-44c6-b50c-40aac0537e1f"><img src="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fb2a4da68-0a9e-463f-bc21-badcb66a45c7%2FUntitled.png?width=1353&amp;table=block&amp;id=395139db-3f83-44c6-b50c-40aac0537e1f" style="width:100%"/></a><figcaption><span class="SemanticStringArray"></span></figcaption></figure></div><div id="https://www.notion.so/f82416429f1d45e68d924051813e5d96" class="Image Image--Normal"><figure><a target="_blank" href="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F04d64757-ab17-4184-ab46-a425bbe5e3fc%2FUntitled.png?width=700&amp;table=block&amp;id=f8241642-9f1d-45e6-8d92-4051813e5d96"><img src="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F04d64757-ab17-4184-ab46-a425bbe5e3fc%2FUntitled.png?width=700&amp;table=block&amp;id=f8241642-9f1d-45e6-8d92-4051813e5d96" style="width:700px"/></a><figcaption><span class="SemanticStringArray"></span></figcaption></figure></div><div id="https://www.notion.so/b50e30429d5d40de86024363b9873045" class="Image Image--Normal"><figure><a target="_blank" href="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Ffbe20f92-daa1-4a15-8655-98583163da8c%2FUntitled.png?width=700&amp;table=block&amp;id=b50e3042-9d5d-40de-8602-4363b9873045"><img src="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Ffbe20f92-daa1-4a15-8655-98583163da8c%2FUntitled.png?width=700&amp;table=block&amp;id=b50e3042-9d5d-40de-8602-4363b9873045" style="width:700px"/></a><figcaption><span class="SemanticStringArray"></span></figcaption></figure></div><div id="https://www.notion.so/b6d1554a9e8043d5bd3396c7394a0f7e" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"></span></p></div><h3 id="https://www.notion.so/b3d8847a6f0f46969d6120ce9ea843ed" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--3"><a class="Anchor" target="_blank" href="#https://www.notion.so/b3d8847a6f0f46969d6120ce9ea843ed"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString">Behind the scenes</span></span></h3><div id="https://www.notion.so/0d83f5011a7949edaeeb8da01bab2636" class="Image Image--PageWidth"><figure><a target="_blank" href="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fcdbe7125-869d-4c2a-b51c-b7961018f192%2FUntitled.png?width=1071&amp;table=block&amp;id=0d83f501-1a79-49ed-aeeb-8da01bab2636"><img src="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fcdbe7125-869d-4c2a-b51c-b7961018f192%2FUntitled.png?width=1071&amp;table=block&amp;id=0d83f501-1a79-49ed-aeeb-8da01bab2636" style="width:100%"/></a><figcaption><span class="SemanticStringArray"></span></figcaption></figure></div><div id="https://www.notion.so/a3e64dba846544cab343de7e4b086fdb" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"></span></p></div></article>  <footer class="Footer">
+        <div>&copy; NotionSite 2021</div>
+        <div>&centerdot;</div>
+        <div>Powered by <a target="_blank" href="https://github.com/dragonman225/notablog" target="_blank"
+            rel="noopener noreferrer">Notablog</a>.
+        </div>
+    </footer>
+</body>
+
+</html>
