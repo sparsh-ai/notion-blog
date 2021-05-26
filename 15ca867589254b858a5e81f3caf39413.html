@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-5F9Y9HC95G"></script>
+      <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", "G-5F9Y9HC95G");
+      </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Chrome, Firefox OS and Opera Status Bar Color -->
+  <meta name="theme-color" content="#FFFFFF">
+  <meta property="og:title" content="Document Recommendation">
+    <meta property="og:type" content="blog">
+  <title>Document Recommendation</title>
+<link rel="icon" type="image/png" href="./favicon.png"/>
+  <!-- Favicon -->
+    <link rel="shortcut icon" target="_blank" href="🌀">
+    <link rel="stylesheet" type="text/css" target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+  <link rel="stylesheet" type="text/css"
+    target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/themes/prism.min.css">
+  <link rel="stylesheet" type="text/css" target="_blank" href="css/SourceSansPro.css">
+  <link rel="stylesheet" type="text/css" target="_blank" href="css/notablog.css">
+  <link rel="stylesheet" type="text/css" target="_blank" href="css/theme.css">
+  <style>
+    :root {
+      font-size: 18px;
+    }
+
+    .DateTagBar {
+      margin-top: 1.0rem;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="Navbar">
+    <a href="index">
+      <div class="Navbar__Btn"><span>🌀</span> <span>Home</span></div>
+    </a>
+                                                                                                                      </nav>
+  <header class="Header">
+          <div class="Header__Spacer Header__Spacer--NoCover">
+    </div>
+        <h1 class="Header__Title">Document Recommendation</h1>
+            <div class="DateTagBar">
+                <span class="DateTagBar__Item DateTagBar__Date">Posted on Wed, Mar 17, 2021</span>
+                            </div>
+          </header>
+      <article id="https://www.notion.so/15ca867589254b858a5e81f3caf39413" class="PageRoot"><div id="https://www.notion.so/da8d3f8aacb1443f8f8726b291c40289" class="Image Image--PageWidth"><figure><a target="_blank" href="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fd109c98d-b732-48d6-957d-3349f6fb6042%2FUntitled.png?width=1720&amp;table=block&amp;id=da8d3f8a-acb1-443f-8f87-26b291c40289"><img src="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fd109c98d-b732-48d6-957d-3349f6fb6042%2FUntitled.png?width=1720&amp;table=block&amp;id=da8d3f8a-acb1-443f-8f87-26b291c40289" style="width:100%"/></a><figcaption><span class="SemanticStringArray"></span></figcaption></figure></div><div id="https://www.notion.so/2fe5658aeaea410db433a6fb62d8c327" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"></span></p></div><h1 id="https://www.notion.so/ce5a6a81214342b6b7c7d04a92651d8c" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--1"><a class="Anchor" target="_blank" href="#https://www.notion.so/ce5a6a81214342b6b7c7d04a92651d8c"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString"><strong class="SemanticString__Fragment SemanticString__Fragment--Bold">Introduction</strong></span></span></h1><div id="https://www.notion.so/000e3cf0aa6842908cfdd16c55ae5286" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">Business objective — For the given user query, recommend relevant documents (BRM_ifam).</span></span></p></div><div id="https://www.notion.so/9924670f5e3142b9a76906be49d82739" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">Technical objective: 1-to-N mapping of given input text</span></span></p></div><h1 id="https://www.notion.so/7d697c901ea04b408a5c2f32bea83fed" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--1"><a class="Anchor" target="_blank" href="#https://www.notion.so/7d697c901ea04b408a5c2f32bea83fed"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString"><strong class="SemanticString__Fragment SemanticString__Fragment--Bold">Proposed Framework 1 — Hybrid Recommender System</strong></span></span></h1><ul class="BulletedListWrapper"><li id="https://www.notion.so/187d1439022941028c050712f4f0d584" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">Text → Vector (Universal Sentence Embedding with TF Hub)</span></span></li><li id="https://www.notion.so/eb73db8d5ed54e85a7f1ec11ae5c16e5" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">Vector → Content-based Filtering Recommendation</span></span></li><li id="https://www.notion.so/cbb74f7f6ea047d0a29b34777f47aa40" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">Index → Interaction Matrix</span></span></li><li id="https://www.notion.so/49f51147c9624fd584494e87ffa0ef53" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">Interaction Matrix → Collaborative Filtering Recommendation</span></span></li><li id="https://www.notion.so/9d418f0a49f54fbd9d0989f07acc02af" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">Collaborative + Content-based → Hybrid Recommendation</span></span></li><li id="https://www.notion.so/2d6716a3e8924c76a1c6c4e23deaf18b" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">Evaluation: Area-under-curve</span></span></li></ul><h1 id="https://www.notion.so/fa3473cfea814751af8c48243f4f7afa" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--1"><a class="Anchor" target="_blank" href="#https://www.notion.so/fa3473cfea814751af8c48243f4f7afa"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString"><strong class="SemanticString__Fragment SemanticString__Fragment--Bold">Proposed Framework 2 — Content based Recommender System</strong></span></span></h1><ol class="NumberedListWrapper"><li id="https://www.notion.so/ba0a89f7d05440aab79542f16efcf1a5" class="NumberedList" value="1"><span class="SemanticStringArray"><span class="SemanticString">Find A most similar user → Cosine similarity</span></span></li><li id="https://www.notion.so/8f3b24bde716407584608f533ccc4ad2" class="NumberedList" value="2"><span class="SemanticStringArray"><span class="SemanticString">For each user in A, find TopK Most Similar Items → Map Argsort</span></span></li><li id="https://www.notion.so/645e19f3f9b44329a3500381b1e9f92b" class="NumberedList" value="3"><span class="SemanticStringArray"><span class="SemanticString">For each item Find TopL Most Similar Items → Cosine similarity</span></span></li><li id="https://www.notion.so/facf7d4b925b4f4c986c0d058d50eeab" class="NumberedList" value="4"><span class="SemanticStringArray"><span class="SemanticString">Display</span></span></li><li id="https://www.notion.so/2193c38c7c65494b896d5768cfde6e1b" class="NumberedList" value="5"><span class="SemanticStringArray"><span class="SemanticString">Implement an evaluation metric</span></span></li><li id="https://www.notion.so/ddbe4eb8544b4578856b8c74b2b6b8db" class="NumberedList" value="6"><span class="SemanticStringArray"><span class="SemanticString">Evaluate</span></span></li></ol><h1 id="https://www.notion.so/b0a3e49d53594eb499c52aafe14e850e" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--1"><a class="Anchor" target="_blank" href="#https://www.notion.so/b0a3e49d53594eb499c52aafe14e850e"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString"><strong class="SemanticString__Fragment SemanticString__Fragment--Bold">Results and Discussion</strong></span></span></h1><ul class="BulletedListWrapper"><li id="https://www.notion.so/92c2f1a9383849828c2a5d82f2027d8e" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">build.py → this script will take the training data as input and save all the required files in the same working directory</span></span></li><li id="https://www.notion.so/35a76f1212204f4f85d558bfaf148589" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">recommend.py → this script will take the user query as input and predict top-K BRM recommendations</span></span></li></ul><div id="https://www.notion.so/1d1a21a200f64fe8a9a1871ad949183a" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">Variables (during recommendation, you will be asked 2–3 choices, the meaning of those choices are as following)</span></span></p></div><ul class="BulletedListWrapper"><li id="https://www.notion.so/84a8f27b1d374b53b92ebaf96950d810" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">top-K — how many top items you want to get in recommendation</span></span></li><li id="https://www.notion.so/e79cb14d19ba4e05b945a34419724de6" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">secondary items: this will determine how many similar items you would like to add in consideration, for each primary matching item</span></span></li><li id="https://www.notion.so/fbb12926343e4ac9aba1b3b1dd9e1070" class="BulletedList"><span class="SemanticStringArray"><span class="SemanticString">sorted by frequency: since multiple input queries might point to same output, therefore this option allows to take that frequence count of outputs in consideration and will move the more frequent items at the top.</span></span></li></ul><h1 id="https://www.notion.so/df10b22c07aa4402bb95ec06e067261e" class="ColorfulBlock ColorfulBlock--ColorDefault Heading Heading--1"><a class="Anchor" target="_blank" href="#https://www.notion.so/df10b22c07aa4402bb95ec06e067261e"><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="SemanticStringArray"><span class="SemanticString"><strong class="SemanticString__Fragment SemanticString__Fragment--Bold">Code</strong></span></span></h1><div></div></article>  <footer class="Footer">
+        <div>&copy; RecoBlog 2021</div>
+        <div>&centerdot;</div>
+        <div>Powered by <a target="_blank" href="https://github.com/dragonman225/notablog" target="_blank"
+            rel="noopener noreferrer">Notablog</a>.
+        </div>
+    </footer>
+</body>
+
+</html>

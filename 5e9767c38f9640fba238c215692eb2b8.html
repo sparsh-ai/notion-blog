@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-5F9Y9HC95G"></script>
+      <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", "G-5F9Y9HC95G");
+      </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Chrome, Firefox OS and Opera Status Bar Color -->
+  <meta name="theme-color" content="#FFFFFF">
+  <meta property="og:title" content="Large-scale Document Retrieval using Elastic Search">
+    <meta property="og:type" content="blog">
+  <title>Large-scale Document Retrieval using Elastic Search</title>
+<link rel="icon" type="image/png" href="./favicon.png"/>
+  <!-- Favicon -->
+    <link rel="shortcut icon" target="_blank" href="🌀">
+    <link rel="stylesheet" type="text/css" target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+  <link rel="stylesheet" type="text/css"
+    target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/themes/prism.min.css">
+  <link rel="stylesheet" type="text/css" target="_blank" href="css/SourceSansPro.css">
+  <link rel="stylesheet" type="text/css" target="_blank" href="css/notablog.css">
+  <link rel="stylesheet" type="text/css" target="_blank" href="css/theme.css">
+  <style>
+    :root {
+      font-size: 18px;
+    }
+
+    .DateTagBar {
+      margin-top: 1.0rem;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="Navbar">
+    <a href="index">
+      <div class="Navbar__Btn"><span>🌀</span> <span>Home</span></div>
+    </a>
+                                                                                                                      </nav>
+  <header class="Header">
+          <div class="Header__Spacer Header__Spacer--NoCover">
+    </div>
+        <h1 class="Header__Title">Large-scale Document Retrieval using Elastic Search</h1>
+            <div class="DateTagBar">
+                <span class="DateTagBar__Item DateTagBar__Date">Posted on Wed, Feb 10, 2021</span>
+                            </div>
+          </header>
+      <article id="https://www.notion.so/5e9767c38f9640fba238c215692eb2b8" class="PageRoot"><div id="https://www.notion.so/b424e5ac910c4e81853a1d7e06161d59" class="Image Image--PageWidth"><figure><a target="_blank" href="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F81bc559e-d908-4023-99cd-0f2c96f0b7e0%2FUntitled.png?width=1024&amp;table=block&amp;id=b424e5ac-910c-4e81-853a-1d7e06161d59"><img src="https://www.notion.so/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F81bc559e-d908-4023-99cd-0f2c96f0b7e0%2FUntitled.png?width=1024&amp;table=block&amp;id=b424e5ac-910c-4e81-853a-1d7e06161d59" style="width:100%"/></a><figcaption><span class="SemanticStringArray"></span></figcaption></figure></div><div id="https://www.notion.so/9c23f5e8b8da47138a388c355b919b8e" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"></span></p></div><div id="https://www.notion.so/26272368b3b74d6ba12d482e86058335" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">In this tutorial, we will first convert our documents into vectors using Google’s “Universal Search Encoder (USE)” model and then index them (+ store on disk) using Elasticsearch.</span></span></p></div><div id="https://www.notion.so/769d62e0a5fa4a1894af16682e8433f4" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">Then during retrieval, we will use the same USE model to convert the query into a vector representation (of length 512) and use Elasticsearch to get most similar vectors.</span></span></p></div><div id="https://www.notion.so/c97b6e3c9865442a9946bc9629795b37" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">Elasticsearch is going to match the given query vector to all vectors stored in its database which is not efficient and scalable. So we will experiment with three approximate nearest neighbor techniques to make the retrieval process scalable.</span></span></p></div><div id="https://www.notion.so/94f2d642bd2444839f7b7954c3d0d630" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">We will use MovieLens-25m dataset for this tutorial.</span></span></p></div><blockquote id="https://www.notion.so/d5a042e5567343c59130076315c165f3" class="ColorfulBlock ColorfulBlock--ColorDefault Quote"><span class="SemanticStringArray"><span class="SemanticString">As medium still doesn’t support Jupyter notebooks in its native form, so we started using fastpages to share notebook based tutorials on GitHub hosted pages.</span></span></blockquote><div id="https://www.notion.so/ae910b7ac403483f84b61268283af552" class="ColorfulBlock ColorfulBlock--ColorDefault Text"><p class="Text__Content"><span class="SemanticStringArray"><span class="SemanticString">The complete tutorial (+code) can be found </span><span class="SemanticString"><a class="SemanticString__Fragment SemanticString__Fragment--Link" target="_blank" href="https://sparsh-ai.github.io/rec-tutorials/large-scale%20elasticsearch/2021/04/20/dl-retrieval">here</a></span><span class="SemanticString">.</span></span></p></div></article>  <footer class="Footer">
+        <div>&copy; RecoBlog 2021</div>
+        <div>&centerdot;</div>
+        <div>Powered by <a target="_blank" href="https://github.com/dragonman225/notablog" target="_blank"
+            rel="noopener noreferrer">Notablog</a>.
+        </div>
+    </footer>
+</body>
+
+</html>
