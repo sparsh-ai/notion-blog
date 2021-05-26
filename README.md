@@ -18,7 +18,7 @@ I like medium a lot and for me, medium is the obvious choice for blogging. But t
 
 *Note*: All the remaining features like ad-monetisation, better google SEO etc. goes in the favor of Medium obviously.  
 
-Template site is hosted here: https://sparsh-ai.github.io/notion-site/
+Template site is hosted here: https://sparsh-ai.github.io/notion-blog/
 
 ### Credits
 - [Notion](https://www.notion.so)
